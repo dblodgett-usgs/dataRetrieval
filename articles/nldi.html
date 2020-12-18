@@ -211,16 +211,17 @@ Gas stations between UCSB and UCLA
 <a href="#by-identifier" class="anchor"></a>By Identifier</h3>
 <p>As an illustrative example, NHDPlus features can be requested by their COMID from the NHDPlusV2 dataset.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/findNLDI.html">findNLDI</a></span><span class="op">(</span>comid <span class="op">=</span> <span class="fl">101</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>#&gt; tibble [1 × 4] (S3: sf/tbl_df/tbl/data.frame)
-#&gt;  $ sourceName: chr "NHDPlus comid"
-#&gt;  $ identifier: chr "101"
-#&gt;  $ comid     : chr "101"
-#&gt;  $ geometry  :sfc_LINESTRING of length 1; first list element:  'XY' num [1:54, 1:2] -94.6 -94.6 -94.6 -94.6 -94.6 ...
-#&gt;  - attr(*, "sf_column")= chr "geometry"
-#&gt;  - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA
-#&gt;   ..- attr(*, "names")= chr [1:3] "sourceName" "identifier" "comid"</code></pre>
-<p>The returned simple features object contains the native dataset identifier (“identifer”), sourceName of the native dataset, and the indexed NHD COMID (in this case a duplicate since an NHD feature was requested). In the example above, we see the geometry column is of type <code>LINESTRING</code>. To keep <code>dataRetrieval</code> lightweight, the [<code>sf</code>] (<a href="https://r-spatial.github.io/sf/articles/sf1.html" class="uri">https://r-spatial.github.io/sf/articles/sf1.html</a>) package is not a dependency. Instead, if <code>sf</code> is not installed - or <code>no_sf = TRUE</code> - only the <em>sourceName</em>, <em>comid</em>, and <em>identifier</em> will be returned.</p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/findNLDI.html">findNLDI</a></span><span class="op">(</span>comid <span class="op">=</span> <span class="fl">101</span><span class="op">)</span></code></pre></div>
+<pre><code>#&gt; Simple feature collection with 1 feature and 3 fields
+#&gt; geometry type:  LINESTRING
+#&gt; dimension:      XY
+#&gt; bbox:           xmin: -94.64845 ymin: 31.0838 xmax: -94.62997 ymax: 31.09915
+#&gt; geographic CRS: WGS 84
+#&gt; # A tibble: 1 x 4
+#&gt;   sourceName   identifier comid                                         geometry
+#&gt;   &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;                                 &lt;LINESTRING [°]&gt;
+#&gt; 1 NHDPlus com… 101        101   (-94.64845 31.09915, -94.64803 31.09871, -94.64…</code></pre>
+<p>The returned simple features object contains the native dataset identifier (“identifier”), sourceName of the native dataset, and the indexed NHD COMID (in this case a duplicate since an NHD feature was requested). In the example above, we see the geometry column is of type <code>LINESTRING</code>. To keep <code>dataRetrieval</code> lightweight, the [<code>sf</code>] (<a href="https://r-spatial.github.io/sf/articles/sf1.html" class="uri">https://r-spatial.github.io/sf/articles/sf1.html</a>) package is not a dependency. Instead, if <code>sf</code> is not installed - or <code>no_sf = TRUE</code> - only the <em>sourceName</em>, <em>comid</em>, and <em>identifier</em> will be returned.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/findNLDI.html">findNLDI</a></span><span class="op">(</span>comid <span class="op">=</span> <span class="fl">101</span>, no_sf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>#&gt;      sourceName identifier comid
